@@ -1537,4 +1537,4 @@ WHERE NOT blocked_locks.granted;
 
 ### Community
 - [PostgreSQL Mailing Lists](https://www.postgresql.org/list/)
-- [PostgreSQL Slack](https://postgres)
+- [PostgreSQL Slack](https://postgres-slack.herokuapp.com/)
