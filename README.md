@@ -63,9 +63,10 @@
 │    (Main PostgreSQL Process)        │
 └──────────────┬──────────────────────┘
                │
-     ┌─────────┴─────────┬─────────────┐
-     │                   │             │
-┌────▼──────┐  ┌────────▼────┐  ┌────▼────┐
+     ┌─────────┴──────┬──────────────┐
+     │                │              │
+     ▼                ▼              ▼
+┌───────────┐  ┌─────────────┐  ┌─────────┐
 │  Backend  │  │   Backend   │  │ Backend │
 │  Process  │  │   Process   │  │ Process │
 └───────────┘  └─────────────┘  └─────────┘
@@ -128,7 +129,7 @@ Database Cluster
 
 #### Numeric Types
 ```sql
-- INTEGER (INT)      -- 4 bytes, -2^31 to 2^31-1
+- INTEGER (INT)     -- 4 bytes, -2^31 to 2^31-1
 - BIGINT            -- 8 bytes, -2^63 to 2^63-1
 - DECIMAL/NUMERIC   -- Variable precision
 - REAL              -- 4 bytes, 6 decimal digits
@@ -190,8 +191,8 @@ DROP TABLE IF EXISTS users CASCADE;
 
 #### Constraints
 ```sql
-- PRIMARY KEY       -- Unique identifier
-- FOREIGN KEY       -- Referential integrity
+- PRIMARY KEY      -- Unique identifier
+- FOREIGN KEY      -- Referential integrity
 - UNIQUE           -- Unique values
 - NOT NULL         -- Required field
 - CHECK            -- Custom validation
@@ -1142,9 +1143,9 @@ CREATE TABLE customers_europe PARTITION OF customers
 #### Key Configuration Parameters
 ```conf
 # Memory
-shared_buffers = 256MB          # 25% of RAM
-work_mem = 4MB                  # Per operation
-maintenance_work_mem = 64MB     # For VACUUM, CREATE INDEX
+shared_buffers = 256MB              # 25% of RAM
+work_mem = 4MB                      # Per operation
+maintenance_work_mem = 64MB         # For VACUUM, CREATE INDEX
 
 # Checkpoint
 checkpoint_timeout = 5min
@@ -1154,19 +1155,18 @@ checkpoint_completion_target = 0.7
 wal_buffers = 16MB
 wal_level
 
-```conf
 wal_level = replica
 max_wal_size = 1GB
 min_wal_size = 80MB
 
 # Query Planning
-random_page_cost = 1.1          # For SSD
-effective_cache_size = 4GB      # Total memory for caching
+random_page_cost = 1.1              # For SSD
+effective_cache_size = 4GB          # Total memory for caching
 
 # Logging
-log_statement = 'all'           # none, ddl, mod, all
+log_statement = 'all'               # none, ddl, mod, all
 log_duration = on
-log_min_duration_statement = 1000  # Log queries > 1s
+log_min_duration_statement = 1000   # Log queries > 1s
 
 # Connections
 max_connections = 100
@@ -1537,4 +1537,4 @@ WHERE NOT blocked_locks.granted;
 
 ### Community
 - [PostgreSQL Mailing Lists](https://www.postgresql.org/list/)
-- [PostgreSQL Slack](https://postgres
+- [PostgreSQL Slack](https://postgres-slack.herokuapp.com/)
